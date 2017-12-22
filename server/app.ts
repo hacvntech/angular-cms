@@ -6,6 +6,7 @@ import * as mongoose from 'mongoose';
 import * as path from 'path';
 
 import setRoutes from './routes';
+import setup from './setup';
 
 const app = express();
 dotenv.load({ path: '.env' });
@@ -31,6 +32,7 @@ mongodb
         console.log('Connected to MongoDB on', db.host + ':' + db.port);
 
         setRoutes(app);
+        setup();
 
         app.get('/*', function (req, res) {
             res.sendFile(path.join(__dirname, '../public/index.html'));
